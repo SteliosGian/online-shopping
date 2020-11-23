@@ -1,5 +1,5 @@
 # --- !Ups
-CREATE TABLE IF NOT EXISTS PUBLIC.PRODUCTS (
+CREATE TABLE IF NOT EXISTS PUBLIC.PRODUCT (
     name VARCHAR(100) NOT NULL,
     code VARCHAR(255) NOT NULL,
     description VARCHAR(1000) NOT NULL,
@@ -7,12 +7,12 @@ CREATE TABLE IF NOT EXISTS PUBLIC.PRODUCTS (
     PRIMARY KEY(code)
 );
 
-INSERT INTO PUBLIC.PRODUCTS (name, code, description, price) VALUES
-('NAO','ALD1','NAO is an humanoid robot.', 3500);
-INSERT INTO PUBLIC.PRODUCTS (name, code, description, price) VALUES
-('PEPER','ALD2','PEPPER is a robot moving with wheels and with a screen as human interaction', 7000);
-INSERT INTO PUBLIC.PRODUCTS (name, code, description, price) VALUES
-('BEOBOT','BEO1','Beobot is multipurpose robot.', 159);
+INSERT INTO PUBLIC.PRODUCT (name, code, description, price) VALUES
+('NAO','ALD1','NAO is a humanoid robot.', 3500);
+INSERT INTO PUBLIC.PRODUCT (name, code, description, price) VALUES
+('PEPPER','ALD2','PEPPER is a robot moving with wheels and with a screen as human interaction', 7000);
+INSERT INTO PUBLIC.PRODUCT (name, code, description, price) VALUES
+('BEOBOT','BEO1','Beobot is a multipurpose robot.', 159);
 
 CREATE TABLE IF NOT EXISTS PUBLIC.CART (
     id BIGINT AUTO_INCREMENT,

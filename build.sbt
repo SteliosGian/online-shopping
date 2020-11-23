@@ -10,20 +10,32 @@ lazy val server = (project in file("server")).settings(commonSettings).settings(
     "com.typesafe.play" %% "play-slick-evolutions" % "3.0.0",
     "com.h2database" % "h2" % "1.4.196",
     "com.dripower" %% "play-circe" % "2609.0",
+    "io.swagger" %% "swagger-play2" % "1.6.0",
+    "org.webjars" % "swagger-ui" % "3.10.0",
     guice,
     "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % "test"
   ),
   swaggerDomainNameSpaces := Seq("models"),
   // Compile the project before generating Eclipse files, so that generated .scala or .class files for views and routes are present
   EclipseKeys.preTasks := Seq(compile in Compile)
-).enablePlugins(PlayScala, SwaggerPlugin).
-  dependsOn(sharedJvm)
+).enablePlugins(PlayScala, SwaggerPlugin)
+  .disablePlugins(PlayFilters)
+  .dependsOn(sharedJvm)
 
 lazy val client = (project in file("client")).settings(commonSettings).settings(
   scalaJSUseMainModuleInitializer := true,
   libraryDependencies ++= Seq(
-    "org.scala-js" %%% "scalajs-dom" % "0.9.3"
-  )
+    "org.scala-js" %%% "scalajs-dom" % "0.9.5",
+    "com.lihaoyi" %%% "scalatags" % "0.6.7",
+    "org.querki" %%% "jquery-facade" % "1.2",
+    "io.circe" %%% "circe-core" % "0.9.3",
+    "io.circe" %%% "circe-generic" % "0.9.3",
+    "io.circe" %%% "circe-parser" % "0.9.3"
+  ),
+  jsDependencies ++= Seq(
+    "org.webjars" % "jquery" % "2.2.1" / "jquery.js"
+      minified "jquery.min.js",
+    "org.webjars" % "notifyjs" % "0.4.2" / "notify.js")
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb).
   dependsOn(sharedJs)
 
